@@ -1,16 +1,14 @@
 package com.dybowski_andrzej;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class ReaderController {
     @GetMapping("/")
-    @ResponseBody
-    public String indexPage(@RequestParam(defaultValue = "https://api.github.com/users/allegro/repos", name = "url") String address, Model model) {
+    public String indexPage(Model model) {
+        String address = "https://api.github.com/users/allegro/repos?client_id=535673ea3d9c705f2067&client_secret=4915594527761dfd978e4ff90c5d68b5765eb026";
 
         RestClient client = new RestClient(address);
         JsonParser parser = new JsonParser();
@@ -18,18 +16,21 @@ public class ReaderController {
         String rawData = client.get();
         parser.addRepositoriesFromRawJsonBody(rawData);
 
-        HeaderLinkParser linkHeaderParser = new HeaderLinkParser(client.getResponseHeaders().get("Link").get(0));
-        while (linkHeaderParser.isKeyExist("next")) {
-            client = new RestClient(linkHeaderParser.getLink("next"));
-            rawData = client.get();
-            parser.addRepositoriesFromRawJsonBody(rawData);
-            linkHeaderParser = new HeaderLinkParser(client.getResponseHeaders().get("Link").get(0));;
+        if (client.getResponseHeaders().containsKey("Link")) {
+            HeaderLinkParser linkHeaderParser = new HeaderLinkParser(client.getResponseHeaders().get("Link").get(0));
+            while (linkHeaderParser.isKeyExist("next")) {
+                client = new RestClient(linkHeaderParser.getLink("next"));
+                rawData = client.get();
+                parser.addRepositoriesFromRawJsonBody(rawData);
+                linkHeaderParser = new HeaderLinkParser(client.getResponseHeaders().get("Link").get(0));
+            }
         }
 
         RepositoriesContainer repositories = parser.getRepositories();
 
         model.addAttribute("lastRepository", repositories.getLastModifiedRepository().getName());
 
-        return repositories.getLastModifiedRepository().getName();
+        model.addAttribute("name", repositories.getLastModifiedRepository().getName());
+        return "index";
     }
 }
