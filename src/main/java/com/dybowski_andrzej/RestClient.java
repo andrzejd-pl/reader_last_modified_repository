@@ -1,27 +1,28 @@
 package com.dybowski_andrzej;
 
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 public class RestClient {
-    private String server;
+    private String address;
     private RestTemplate rest;
     private HttpHeaders headers;
-    private HttpStatus status;
     private HttpHeaders responseHeaders;
 
-    public RestClient(String server) {
-        this.server = server;
+    public RestClient(String address) {
+        this.address = address;
         this.rest = new RestTemplate();
         this.headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         headers.add("Accept", "*/*");
     }
 
-    public String get(String uri) {
+    public String get() {
         HttpEntity<String> requestEntity = new HttpEntity<String>("", headers);
-        ResponseEntity<String> responseEntity = rest.exchange(server + uri, HttpMethod.GET, requestEntity, String.class);
-        this.status = responseEntity.getStatusCode();
+        ResponseEntity<String> responseEntity = rest.exchange(address, HttpMethod.GET, requestEntity, String.class);
         this.responseHeaders = responseEntity.getHeaders();
         return responseEntity.getBody();
     }

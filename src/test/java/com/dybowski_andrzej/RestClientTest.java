@@ -8,8 +8,8 @@ class RestClientTest {
 
     @Test
     void get() {
-        RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com");
-        String data = restClient.get("/posts/1");
+        RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com/posts/1");
+        String data = restClient.get();
         String correctBody = "{\n" +
                 "  \"userId\": 1,\n" +
                 "  \"id\": 1,\n" +
@@ -22,8 +22,8 @@ class RestClientTest {
 
     @Test
     void getResponeHeaders() {
-        RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com");
-        String data = restClient.get("/posts/1");
+        RestClient restClient = new RestClient("https://jsonplaceholder.typicode.com/posts/1");
+        String data = restClient.get();
 
         HttpHeaders headers = restClient.getResponseHeaders();
 
