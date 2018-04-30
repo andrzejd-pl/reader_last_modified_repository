@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class RepositoryTest {
 
     @Test
@@ -42,5 +40,20 @@ class RepositoryTest {
         Repository repository = new Repository(name, date, pattern);
 
         Assertions.assertEquals(name, repository.getName());
+    }
+
+
+    @Test
+    void equals() {
+        String date = "2018-04-24T11:32:11Z";
+        date = date.replace("T", " ");
+        date = date.replace("Z", " ");
+
+        String name = "GitHub repository";
+        String pattern = "yyyy-MM-dd HH:mm:SS ";
+
+        Repository repository = new Repository(name, date, pattern);
+
+        Assertions.assertEquals(new Repository(name, date, pattern), repository);
     }
 }

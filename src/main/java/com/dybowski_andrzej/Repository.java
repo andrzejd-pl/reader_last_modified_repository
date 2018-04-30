@@ -21,4 +21,14 @@ public class Repository {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Repository) {
+            Repository repository = (Repository) obj;
+
+            return repository.name.equals(this.name) && repository.lastModifiedDate.isEqual(this.lastModifiedDate);
+        }
+        return false;
+    }
 }
