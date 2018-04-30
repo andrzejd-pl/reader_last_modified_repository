@@ -13,8 +13,8 @@ class RepositoryTest {
     @Test
     void getLastModifiedDate() {
         String date = "2018-04-24T11:32:11Z";
-        date = date.replace("T"," ");
-        date = date.replace("Z"," ");
+        date = date.replace("T", " ");
+        date = date.replace("Z", " ");
 
         String name = "GitHub repository";
 
@@ -28,5 +28,19 @@ class RepositoryTest {
 
 
         Assertions.assertTrue(dateRepository.isEqual(correctDate));
+    }
+
+    @Test
+    void getName() {
+        String date = "2018-04-24T11:32:11Z";
+        date = date.replace("T", " ");
+        date = date.replace("Z", " ");
+
+        String name = "GitHub repository";
+        String pattern = "yyyy-MM-dd HH:mm:SS ";
+
+        Repository repository = new Repository(name, date, pattern);
+
+        Assertions.assertEquals(name, repository.getName());
     }
 }

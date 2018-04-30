@@ -17,4 +17,8 @@ public class Repository {
     public LocalDate getLastModifiedDate() {
         return lastModifiedDate;
     }
+
+    public String getName() {
+        return name;
+    }
 }
