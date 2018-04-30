@@ -31,7 +31,7 @@ class JsonParserTest {
                         "}" +
                         "]"
         };
-        Repository repository = new Repository("repo1", "2018-04-24 21:54:35 ", "yyyy-MM-dd HH:mm:SS ");
+        Repository repository = new Repository("repo6", "2018-04-24 21:54:38 ", "yyyy-MM-dd HH:mm:ss ");
 
         JsonParser parser = new JsonParser();
 

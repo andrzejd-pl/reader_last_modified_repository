@@ -15,7 +15,7 @@ public class JsonParser {
             String date = jsonObject.getString("updated_at");
             date = date.replace("T", "");
             date = date.replace("Z", "");
-            String pattern = "yyyy-MM-ddHH:mm:SS";
+            String pattern = "yyyy-MM-ddHH:mm:ss";
 
             repositories.add(new Repository(jsonObject.getString("name"), date, pattern));
         }

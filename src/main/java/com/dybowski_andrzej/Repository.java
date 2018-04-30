@@ -1,20 +1,20 @@
 package com.dybowski_andrzej;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Repository {
 
-    private LocalDate lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
     private String name;
 
     public Repository(String name, String dateTime, String pattern) {
         this.name = name;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        this.lastModifiedDate = LocalDate.parse(dateTime, formatter);
+        this.lastModifiedDate = LocalDateTime.parse(dateTime, formatter);
     }
 
-    public LocalDate getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
