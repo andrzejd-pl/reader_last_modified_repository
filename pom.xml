@@ -7,6 +7,10 @@
     <groupId>com.dybowski_andrzej</groupId>
     <artifactId>reader_last_modified_repository</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>reader_last_modified_repository</name>
+    
     <build>
         <plugins>
             <plugin>
@@ -16,6 +20,10 @@
                     <source>8</source>
                     <target>8</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
