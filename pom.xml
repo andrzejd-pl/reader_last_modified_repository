@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dybowski_andrzej</groupId>
-    <artifactId>json_lib</artifactId>
+    <artifactId>reader_last_modified_repository</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
         <plugins>
