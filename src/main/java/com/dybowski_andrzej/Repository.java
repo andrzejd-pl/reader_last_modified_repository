@@ -30,4 +30,26 @@ public class Repository {
         }
         return false;
     }
+
+    public static class Builder {
+        private LocalDateTime lastModifiedDate;
+        private String name;
+
+        public Builder addDateTime(String date, String pattern) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+            this.lastModifiedDate = LocalDateTime.parse(date, formatter);
+            return this;
+        }
+
+        public Builder addName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Repository build() {
+            if(lastModifiedDate == null || name == null) throw new NullPointerException();
+
+            return new Repository(this.name, this.lastModifiedDate);
+        }
+    }
 }

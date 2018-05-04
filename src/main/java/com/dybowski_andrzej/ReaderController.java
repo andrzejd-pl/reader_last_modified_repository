@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ReaderController {
     @GetMapping("/")
     public String indexPage(Model model) {
-        String address = "https://api.github.com/users/allegro/repos?client_id=535673ea3d9c705f2067&client_secret=dd14649643c09a588a21053b8f743b72121a5849";
+        String address = "https://api.github.com/users/allegro/repos";
 
         RestClient client = new RestClient(address);
         JsonParser parser = new JsonParser();

@@ -37,7 +37,7 @@ class RepositoryTest {
         String name = "GitHub repository";
         String pattern = "yyyy-MM-dd HH:mm:ss ";
 
-        DateTimeFormatter formatter = DateFormatter.ofPattern(pattern);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
 
         Repository repository = new Repository(name, dateTime);
@@ -48,8 +48,8 @@ class RepositoryTest {
 
     @Test
     void equals() {
-        LocalDateTime date = "2018-04-24T11:32:11Z";
-        LocalDateTime date2 = "2018-04-24T11:32:12Z";
+        String date = "2018-04-24T11:32:11Z";
+        String date2 = "2018-04-24T11:32:12Z";
         date = date.replace("T", " ");
         date = date.replace("Z", " ");
 
@@ -59,11 +59,11 @@ class RepositoryTest {
         String name = "GitHub repository";
         String pattern = "yyyy-MM-dd HH:mm:ss ";
 
-        DateTimeFormatter formatter = DateFormatter.ofPattern(pattern);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
         LocalDateTime dateTime2 = LocalDateTime.parse(date2, formatter);
 
-        Repository repository = new Repository(name, date, pattern);
+        Repository repository = new Repository.Builder().addName(name).addDateTime(date, pattern).build();
 
         Assertions.assertEquals(new Repository(name, dateTime), repository);
         Assertions.assertNotEquals(new Repository(name, dateTime2), repository);

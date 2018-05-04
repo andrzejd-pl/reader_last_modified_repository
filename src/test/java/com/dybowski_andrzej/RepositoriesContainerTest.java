@@ -9,12 +9,12 @@ class RepositoriesContainerTest {
     void searchLastModifiedRepository() {
         RepositoriesContainer repositories = new RepositoriesContainer();
 
-        repositories.add(new Repository("repository 1", "2018-04-24 11:32:11 ", "yyyy-MM-dd HH:mm:ss "));
-        repositories.add(new Repository("repository 2", "2018-04-25 11:32:11 ", "yyyy-MM-dd HH:mm:ss "));
-        repositories.add(new Repository("repository 3", "2018-04-23 11:32:11 ", "yyyy-MM-dd HH:mm:ss "));
+        repositories.add(new Repository.Builder().addName("repository 1").addDateTime( "2018-04-24 11:32:11 ", "yyyy-MM-dd HH:mm:ss ").build());
+        repositories.add(new Repository.Builder().addName("repository 2").addDateTime( "2018-04-25 11:32:11 ", "yyyy-MM-dd HH:mm:ss ").build());
+        repositories.add(new Repository.Builder().addName("repository 3").addDateTime( "2018-04-23 11:32:11 ", "yyyy-MM-dd HH:mm:ss ").build());
 
         Repository lastModifiedRepository = repositories.getLastModifiedRepository();
 
-        Assertions.assertEquals(new Repository("repository 2", "2018-04-25 11:32:11 ", "yyyy-MM-dd HH:mm:ss "), lastModifiedRepository);
+        Assertions.assertEquals(new Repository.Builder().addName("repository 2").addDateTime( "2018-04-25 11:32:11 ", "yyyy-MM-dd HH:mm:ss ").build(), lastModifiedRepository);
     }
 }
