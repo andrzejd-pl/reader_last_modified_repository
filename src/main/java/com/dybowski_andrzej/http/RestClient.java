@@ -1,4 +1,4 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.http;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

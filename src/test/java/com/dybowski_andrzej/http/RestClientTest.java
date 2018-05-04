@@ -1,4 +1,4 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.http;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

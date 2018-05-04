@@ -1,4 +1,4 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.repository;
 
 import java.util.ArrayList;
 

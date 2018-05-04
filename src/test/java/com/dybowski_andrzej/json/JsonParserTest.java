@@ -1,5 +1,7 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.json;
 
+import com.dybowski_andrzej.repository.RepositoriesContainer;
+import com.dybowski_andrzej.repository.Repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -31,7 +33,6 @@ class JsonParserTest {
                         "}" +
                         "]"
         };
-        //Repository repository = new Repository("repo6", "2018-04-24 21:54:38 ", "yyyy-MM-dd HH:mm:ss ");
 
         Repository repository = (new Repository.Builder().addName("repo6").addDateTime("2018-04-24 21:54:38 ", "yyyy-MM-dd HH:mm:ss ").build());
 

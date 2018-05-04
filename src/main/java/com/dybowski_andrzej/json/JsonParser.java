@@ -1,5 +1,7 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.json;
 
+import com.dybowski_andrzej.repository.RepositoriesContainer;
+import com.dybowski_andrzej.repository.Repository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

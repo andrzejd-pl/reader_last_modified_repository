@@ -1,4 +1,4 @@
-package com.dybowski_andrzej;
+package com.dybowski_andrzej.http;
 
 import java.util.HashMap;
 import java.util.Map;
