@@ -1,14 +1,15 @@
 package com.dybowski_andrzej;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class ReaderController {
     @GetMapping("/")
-    public String indexPage(Model model) {
-        String address = "https://api.github.com/users/allegro/repos";
+    @ResponseBody
+    public String indexPage() {
+        String address = "https://api.github.com/orgs/allegro/repos";
 
         RestClient client = new RestClient(address);
         JsonParser parser = new JsonParser();
@@ -27,10 +28,6 @@ public class ReaderController {
         }
 
         RepositoriesContainer repositories = parser.getRepositories();
-
-        model.addAttribute("lastRepository", repositories.getLastModifiedRepository().getName());
-
-        model.addAttribute("name", repositories.getLastModifiedRepository().getName());
-        return "index";
+        return repositories.getLastModifiedRepository().getName();
     }
 }
