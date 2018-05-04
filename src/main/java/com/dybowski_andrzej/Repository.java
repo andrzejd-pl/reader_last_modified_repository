@@ -8,10 +8,9 @@ public class Repository {
     private LocalDateTime lastModifiedDate;
     private String name;
 
-    public Repository(String name, String dateTime, String pattern) {
+    public Repository(String name, LocalDateTime dateTime) {
         this.name = name;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        this.lastModifiedDate = LocalDateTime.parse(dateTime, formatter);
+        this.lastModifiedDate = dateTime;
     }
 
     public LocalDateTime getLastModifiedDate() {

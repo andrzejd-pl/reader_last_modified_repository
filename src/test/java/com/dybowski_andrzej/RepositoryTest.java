@@ -10,17 +10,17 @@ class RepositoryTest {
 
     @Test
     void getLastModifiedDate() {
-        String date = "2018-04-24T11:32:11Z";
-        date = date.replace("T", "");
-        date = date.replace("Z", "");
+        String firstDate = "2018-04-24T11:32:11Z";
+        firstDate = firstDate.replace("T", "");
+        firstDate = firstDate.replace("Z", "");
 
         String name = "GitHub repository";
 
         String pattern = "yyyy-MM-ddHH:mm:ss";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-        LocalDateTime correctDate = LocalDateTime.parse(date, formatter);
+        LocalDateTime correctDate = LocalDateTime.parse(firstDate, formatter);
 
-        Repository repository = new Repository(name, date, pattern);
+        Repository repository = new Repository(name, correctDate);
 
         LocalDateTime dateRepository = repository.getLastModifiedDate();
 
@@ -37,7 +37,10 @@ class RepositoryTest {
         String name = "GitHub repository";
         String pattern = "yyyy-MM-dd HH:mm:ss ";
 
-        Repository repository = new Repository(name, date, pattern);
+        DateTimeFormatter formatter = DateFormatter.ofPattern(pattern);
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+
+        Repository repository = new Repository(name, dateTime);
 
         Assertions.assertEquals(name, repository.getName());
     }
@@ -45,8 +48,8 @@ class RepositoryTest {
 
     @Test
     void equals() {
-        String date = "2018-04-24T11:32:11Z";
-        String date2 = "2018-04-24T11:32:12Z";
+        LocalDateTime date = "2018-04-24T11:32:11Z";
+        LocalDateTime date2 = "2018-04-24T11:32:12Z";
         date = date.replace("T", " ");
         date = date.replace("Z", " ");
 
@@ -56,9 +59,13 @@ class RepositoryTest {
         String name = "GitHub repository";
         String pattern = "yyyy-MM-dd HH:mm:ss ";
 
+        DateTimeFormatter formatter = DateFormatter.ofPattern(pattern);
+        LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
+        LocalDateTime dateTime2 = LocalDateTime.parse(date2, formatter);
+
         Repository repository = new Repository(name, date, pattern);
 
-        Assertions.assertEquals(new Repository(name, date, pattern), repository);
-        Assertions.assertNotEquals(new Repository(name, date2, pattern), repository);
+        Assertions.assertEquals(new Repository(name, dateTime), repository);
+        Assertions.assertNotEquals(new Repository(name, dateTime2), repository);
     }
 }
